@@ -87,6 +87,19 @@ Include a referee prompt to verify the claims to reduce misinformation and hallu
 Given the thread of emails and flagged issues (with evidence and location) verify for each issue:
     1. The evidence_quote is word for word in the thread.
     2. The flagged issue has not been resolved within the thread.
+    3. The output format follows the expected format.
+
+Expected format:
+{
+    "title": str,
+    "attention_flag": str,
+    "priority": "low" | "medium" | "high" | null,
+    "owner": str | null,
+    "days_since_last_update": int,
+    "evidence_quote": str,
+    "evidence_location": {{"thread_id": str, "message_id": str}},
+    "confidence": 0..1
+}
 
 Return the same list of issues, but add a field {"verified": True | False} to each issue.
 
